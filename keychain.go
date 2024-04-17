@@ -94,7 +94,7 @@ func (k *keychain) Get(key string) (Item, error) {
 	//	Description: results[0].Description,
 	//}
 
-	debugf("Found item %q", results[0].Label)
+	//debugf("Found item %q", results[0].Label)
 	return Item{}, nil
 }
 
