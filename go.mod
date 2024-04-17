@@ -1,4 +1,4 @@
-module github.com/99designs/keyring
+module github.com/lukachi/keyring
 
 go 1.19
 
