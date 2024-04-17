@@ -53,49 +53,49 @@ func init() {
 }
 
 func (k *keychain) Get(key string) (Item, error) {
-	query := gokeychain.NewItem()
-	query.SetSecClass(gokeychain.SecClassGenericPassword)
-	query.SetService(k.service)
-	query.SetAccount(key)
-	query.SetMatchLimit(gokeychain.MatchLimitOne)
-	query.SetReturnAttributes(true)
-	query.SetReturnData(true)
-
-	if k.path != "" {
-		// When we are querying, we don't create by default
-		// query.SetMatchSearchList(gokeychain.NewWithPath(k.path))
-	}
-
-	debugf("Querying keychain for service=%q, account=%q, keychain=%q", k.service, key, k.path)
-	results, err := gokeychain.QueryItem(query)
-	if err != nil {
-		switch err {
-		case ErrorUserCanceled:
-			debugf("Keychain access denied")
-			return Item{}, ErrAccessDenied
-		case gokeychain.ErrorItemNotFound:
-			debugf("Item not found in the keyring")
-			return Item{}, ErrKeyNotFound
-		default:
-			debugf("Error: %#v", err)
-			return Item{}, err
-		}
-	}
-
-	if len(results) == 0 {
-		debugf("No results found")
-		return Item{}, ErrKeyNotFound
-	}
-
-	item := Item{
-		Key:         key,
-		Data:        results[0].Data,
-		Label:       results[0].Label,
-		Description: results[0].Description,
-	}
+	//query := gokeychain.NewItem()
+	//query.SetSecClass(gokeychain.SecClassGenericPassword)
+	//query.SetService(k.service)
+	//query.SetAccount(key)
+	//query.SetMatchLimit(gokeychain.MatchLimitOne)
+	//query.SetReturnAttributes(true)
+	//query.SetReturnData(true)
+	//
+	//if k.path != "" {
+	//	// When we are querying, we don't create by default
+	//	// query.SetMatchSearchList(gokeychain.NewWithPath(k.path))
+	//}
+	//
+	//debugf("Querying keychain for service=%q, account=%q, keychain=%q", k.service, key, k.path)
+	//results, err := gokeychain.QueryItem(query)
+	//if err != nil {
+	//	switch err {
+	//	case ErrorUserCanceled:
+	//		debugf("Keychain access denied")
+	//		return Item{}, ErrAccessDenied
+	//	case gokeychain.ErrorItemNotFound:
+	//		debugf("Item not found in the keyring")
+	//		return Item{}, ErrKeyNotFound
+	//	default:
+	//		debugf("Error: %#v", err)
+	//		return Item{}, err
+	//	}
+	//}
+	//
+	//if len(results) == 0 {
+	//	debugf("No results found")
+	//	return Item{}, ErrKeyNotFound
+	//}
+	//
+	//item := Item{
+	//	Key:         key,
+	//	Data:        results[0].Data,
+	//	Label:       results[0].Label,
+	//	Description: results[0].Description,
+	//}
 
 	debugf("Found item %q", results[0].Label)
-	return item, nil
+	return Item{}, nil
 }
 
 func (k *keychain) GetMetadata(key string) (Metadata, error) {
