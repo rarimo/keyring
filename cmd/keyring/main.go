@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/lukachi/keyring"
+	"github.com/99designs/keyring"
 )
 
 func main() {
